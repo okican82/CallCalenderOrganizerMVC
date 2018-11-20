@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">CallCalenderOrganizerMVC</string>
+    <string name="save">Kaydet</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="add_new_list">Yeni Liste Oluştur</string>
+    <string name="noListItems">Hiç Listen yok.\nYeni liste oluştur</string>
+    <string name="remind">Hatırlat</string>
+    <string name="remove_list">Listeyi Sil</string>
+    <string name="edit_list">Liste Ayarları</string>
+    <string name="add_new_person">Yeni kişi ekle</string>
+    <string name="person">Kişi</string>
+    <string name="noPersonSelectedWarning">Henüz listeye hiçbir kişi eklenmemiş.</string>
+    <string name="list">Listeler</string>
+    <string name="addNewPersonTitle">Yeni Kişi Ekle</string>
+    <string name="delete">Sil</string>
+    <string name="confirm_delete">Silmek İstediğinizden emin misiniz?</string>
+    <string name="inform_no_person_on_the_list">Listede arama yapabilecek hiç kimse yok.</string>
+    <string name="begin_date">Başlangıç Tarihi</string>
+    <string name="end_date">Bitiş Tarihi</string>
+
+
 </resources>

@@ -2,8 +2,18 @@ package okayyildirim.com.callcalenderorganizermvc.Model;
 
 public class ListPhoneBookItem
 {
+    private Person person;
+    private int status;
+    private String dateText;
     private int listID;
-    private int personID;
+
+    public ListPhoneBookItem(Person person, int status, String dateText, int listID) {
+
+        this.person = person;
+        this.status = status;
+        this.dateText = dateText;
+        this.listID = listID;
+    }
 
     public int getListID() {
         return listID;
@@ -13,17 +23,27 @@ public class ListPhoneBookItem
         this.listID = listID;
     }
 
-    public int getPersonID() {
-        return personID;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPersonID(int personID) {
-        this.personID = personID;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    public ListPhoneBookItem(int listID, int personID) {
+    public int getStatus() {
+        return status;
+    }
 
-        this.listID = listID;
-        this.personID = personID;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getDateText() {
+        return dateText;
+    }
+
+    public void setDateText(String dateText) {
+        this.dateText = dateText;
     }
 }

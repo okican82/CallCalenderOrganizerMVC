@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#212333</color>
+    <color name="colorPrimaryDark">#212333</color>
+    <color name="colorAccent">#000000</color>
     <color name="colorTransperent">#00000000</color>
+    <color name="buttonBackGroundColor">#00000000</color>
+    <color name="switch_color">#212333</color>
+    <color name="warning_color">#990000</color>
+    <color name="text_disable_color">#cccccc</color>
+
+
 </resources>

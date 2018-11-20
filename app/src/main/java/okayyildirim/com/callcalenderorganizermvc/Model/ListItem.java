@@ -5,6 +5,8 @@ public class ListItem {
     private int ID;
     private String Name;
     private String date;
+    private String endDate;
+
 
     public int getID() {
         return ID;
@@ -30,11 +32,19 @@ public class ListItem {
         this.date = date;
     }
 
-    public ListItem(int ID, String name, String date) {
-
+    public ListItem(int ID, String name, String date, String endDate) {
         this.ID = ID;
         Name = name;
         this.date = date;
+        this.endDate = endDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }
 
