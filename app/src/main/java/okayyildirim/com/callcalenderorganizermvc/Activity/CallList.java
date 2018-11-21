@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,8 +21,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 import okayyildirim.com.callcalenderorganizermvc.Adapter.CallListAdapter;
+import okayyildirim.com.callcalenderorganizermvc.AppSettings.AppSettings;
 import okayyildirim.com.callcalenderorganizermvc.DB.DB;
 import okayyildirim.com.callcalenderorganizermvc.Model.ListItem;
 import okayyildirim.com.callcalenderorganizermvc.R;
@@ -48,6 +51,11 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration c = new Configuration();
+        c.locale = new Locale(AppSettings.getInstance(getApplicationContext()).getValue("LANGUAGE"));
+        getResources().updateConfiguration(c, null);
+
         setContentView(R.layout.activity_call_list);
 
         CallLists = (ListView) findViewById(R.id.CallLists);
@@ -72,10 +80,21 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
 
         });
 
+        CallLists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> arg0, View v,
+                                           int index, long arg3) {
+
+                Toast.makeText(getApplicationContext(),"lonf", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
         if(!checkPermission())
         {
             requestPermission();
         }
+
 
     }
 
@@ -83,7 +102,6 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
     protected void onResume()
     {
         super.onResume();
-
         resfreshLayoutView();
     }
 
@@ -107,7 +125,12 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
 
     private void addNewCallItemToList(String listName)
     {
-        DB.getInstance(getApplicationContext()).addNewListItem(listName, Util.convertDateToString(Calendar.getInstance().getTime()),Util.convertDateToString(Calendar.getInstance().getTime()));
+        DB.getInstance(getApplicationContext()).addNewListItem(listName,
+                Util.convertDateToString(Calendar.getInstance().getTime()),
+                Util.convertDateToString(Calendar.getInstance().getTime()),
+                Integer.parseInt(AppSettings.getInstance(getApplicationContext()).getValue("BEGIN_NOTIFICATION")),
+                Integer.parseInt(AppSettings.getInstance(getApplicationContext()).getValue("END_NOTIFICATION")));
+
         resfreshLayoutView();
     }
 
@@ -141,6 +164,12 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
     {
         Intent callListeIntent = new Intent(this,DisplayCallList.class);
         callListeIntent.putExtra("selectedListID",id);
+        startActivity(callListeIntent);
+    }
+
+    private void openSettings()
+    {
+        Intent callListeIntent = new Intent(this,Settings.class);
         startActivity(callListeIntent);
     }
 
@@ -204,7 +233,9 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
             case R.id.newList:
                 addNewCallList();
                 return true;
-
+            case R.id.settings:
+                openSettings();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

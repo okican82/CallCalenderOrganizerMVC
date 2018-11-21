@@ -1,6 +1,7 @@
 package okayyildirim.com.callcalenderorganizermvc.Activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +10,10 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import okayyildirim.com.callcalenderorganizermvc.Adapter.PersonListAdapter;
+import okayyildirim.com.callcalenderorganizermvc.AppSettings.AppSettings;
 import okayyildirim.com.callcalenderorganizermvc.DB.DB;
 import okayyildirim.com.callcalenderorganizermvc.Model.Person;
 import okayyildirim.com.callcalenderorganizermvc.R;
@@ -30,6 +33,11 @@ public class CreateNewCallList extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration c = new Configuration();
+        c.locale = new Locale(AppSettings.getInstance(getApplicationContext()).getValue("LANGUAGE"));
+        getResources().updateConfiguration(c, null);
+
         setContentView(R.layout.activity_create_new_call_list);
 
         search_view = (SearchView) findViewById(R.id.search_view);

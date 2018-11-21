@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.ListDetail">
+    tools:context=".Activity.Settings">
+
 
     <Button
         android:id="@+id/save_btn"
@@ -36,39 +37,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="10dp"
-                android:text="@string/begin_date"
-
+                android:text="@string/language"
                 android:textColor="@android:color/black" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="19-Kas-2018"
+                android:text="@string/language"
                 android:layout_weight="1"
                 android:background="@color/colorTransperent"
-                android:id="@+id/begin_date_btn"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/end_date"
-                android:padding="10dp"
-                android:textColor="@android:color/black"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="19-Kas-2018"
-                android:layout_weight="1"
-                android:background="@color/colorTransperent"
-                android:id="@+id/end_date_btn"
+                android:id="@+id/language_btn"
                 />
 
         </LinearLayout>
@@ -77,18 +55,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-
 
             <Switch
                 android:id="@+id/begin_date_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/notification_from_begin_date"
+                android:text="@string/notification_from_begin_date_app"
                 android:padding="10dp"
                 />
-
 
         </LinearLayout>
 
@@ -102,12 +77,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/notification_from_end_date"
+                android:text="@string/notification_from_end_date_app"
                 android:padding="10dp"
                 />
 
-
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

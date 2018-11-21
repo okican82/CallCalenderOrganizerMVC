@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,12 +37,15 @@ public class DB extends SQLiteOpenHelper {
         this.context = context;
     }
 
+    @Override
     public void onCreate(SQLiteDatabase db) {
         String Call_List = "CREATE TABLE LISTS ("
                 + " ID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + " NAME TEXT,"
                 + " DATE TEXT, "
-                + " END_DATE TEXT "
+                + " END_DATE TEXT, "
+                + " NOTIFY_BEGIN_DATE INTEGER, "
+                + " NOTIFY_END_DATE INTEGER "
                 + ")";
         db.execSQL(Call_List);
 
@@ -61,8 +63,6 @@ public class DB extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
     }
 
-
-
     public ArrayList<ListItem> getCallLists()
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -77,7 +77,7 @@ public class DB extends SQLiteOpenHelper {
         {
             do
             {
-                ListItems.add(new ListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)));
+                ListItems.add(new ListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getInt(4),cursor.getInt(5)));
 
             }while (cursor.moveToNext());
         }
@@ -123,7 +123,7 @@ public class DB extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst())
         {
-            item = new ListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3));
+            item = new ListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getInt(4),cursor.getInt(5));
         }
         else
         {
@@ -153,7 +153,7 @@ public class DB extends SQLiteOpenHelper {
 
     }
 
-    public void addNewListItem(String name,String beginDate,String endDate)
+    public void addNewListItem(String name,String beginDate,String endDate,int notifyBeginDate,int notifyEndDate)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -162,13 +162,15 @@ public class DB extends SQLiteOpenHelper {
         values.put("NAME", name);
         values.put("DATE", beginDate);
         values.put("END_DATE",endDate);
+        values.put("NOTIFY_BEGIN_DATE",notifyBeginDate);
+        values.put("NOTIFY_END_DATE",notifyEndDate);
 
         db.insert("LISTS", null, values);
 
         db.close();
     }
 
-    public void updateListItemDateRange(int listID,String beginDate,String endDate)
+    public void updateListItem(int listID,String beginDate,String endDate,int notifyBeginDate,int notifyEndDate)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -176,12 +178,10 @@ public class DB extends SQLiteOpenHelper {
 
         values.put("DATE", beginDate);
         values.put("END_DATE",endDate);
+        values.put("NOTIFY_BEGIN_DATE", notifyBeginDate);
+        values.put("NOTIFY_END_DATE",notifyEndDate);
 
         db.update("LISTS", values, "ID=" + listID, null);
-
-        //String strSQL = "UPDATE LIST SET DATE = " + beginDate + " WHERE ID = "+ listID;
-
-        //db.execSQL(strSQL);
 
         db.close();
     }

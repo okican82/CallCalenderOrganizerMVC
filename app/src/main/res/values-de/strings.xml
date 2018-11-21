@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CallCalenderOrganizerMVC</string>
+    <string name="save">Speichern</string>
+    <string name="cancel">Stornieren</string>
+    <string name="add_new_list">Neue Liste Erstellen</string>
+    <string name="noListItems">Nein, Hör Nicht.\nNeue Liste Erstellen</string>
+    <string name="remind">Erinnern</string>
+    <string name="remove_list">Liste Löschen</string>
+    <string name="edit_list">Listeneinstellungen</string>
+    <string name="add_new_person">Einen neuen Kontakt hinzufügen</string>
+    <string name="person">Person</string>
+    <string name="noPersonSelectedWarning">Es Wurden Noch Keine Kontakte Zur Liste Hinzugefügt.</string>
+    <string name="list">Listen</string>
+    <string name="addNewPersonTitle">Neuen Kontakt Hinzufügen</string>
+    <string name="delete">Klar</string>
+    <string name="confirm_delete">Möchten Sie Wirklich Löschen?</string>
+    <string name="inform_no_person_on_the_list">Es Gibt Niemanden, Um Die Liste Zu Durchsuchen.</string>
+    <string name="begin_date">Startdatum</string>
+    <string name="end_date">Enddatum</string>
+    <string name="notification_from_begin_date_app">Erinnerung am Startdatum, wenn eine neue Liste erstellt wird</string>
+    <string name="notification_from_end_date_app">Erinnerung am Enddatum, wenn eine neue Liste erstellt wird</string>
+    <string name="notification_from_begin_date">Starterinnerung aktiviert</string>
+    <string name="notification_from_end_date">Erinnerung aktiv am Enddatum</string>
+    <string name="language">Sprache</string>
+    <string name="settings">Einstellungen</string>
+    <string name="begin_date_title">Sie haben heute Leute, die Sie anrufen können.</string>
+    <string name="begin_date_title_and">Sie haben heute Leute, die Sie anrufen können</string>
+    <string name="end_date_title">Letzter Tag für Menschen, die heute anrufen müssen.</string>
+    <string name="end_date_title_and"> und der letzte Tag, um nach einigen Kontakten zu suchen.</string>
+</resources>

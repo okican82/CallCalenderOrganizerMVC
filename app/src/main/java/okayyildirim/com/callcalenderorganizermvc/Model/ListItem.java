@@ -6,6 +6,8 @@ public class ListItem {
     private String Name;
     private String date;
     private String endDate;
+    private int notifyBeginDate;
+    private int notifyEndDate;
 
 
     public int getID() {
@@ -32,19 +34,37 @@ public class ListItem {
         this.date = date;
     }
 
-    public ListItem(int ID, String name, String date, String endDate) {
-        this.ID = ID;
-        Name = name;
-        this.date = date;
-        this.endDate = endDate;
-    }
-
     public String getEndDate() {
         return endDate;
     }
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public ListItem(int ID, String name, String date, String endDate, int notifyBeginDate, int notifyEndDate) {
+        this.ID = ID;
+        Name = name;
+        this.date = date;
+        this.endDate = endDate;
+        this.notifyBeginDate = notifyBeginDate;
+        this.notifyEndDate = notifyEndDate;
+    }
+
+    public int getNotifyBeginDate() {
+        return notifyBeginDate;
+    }
+
+    public void setNotifyBeginDate(int notifyBeginDate) {
+        this.notifyBeginDate = notifyBeginDate;
+    }
+
+    public int getNotifyEndDate() {
+        return notifyEndDate;
+    }
+
+    public void setNotifyEndDate(int notifyEndDate) {
+        this.notifyEndDate = notifyEndDate;
     }
 }
 

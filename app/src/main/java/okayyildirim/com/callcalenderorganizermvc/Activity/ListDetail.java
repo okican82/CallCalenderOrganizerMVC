@@ -1,13 +1,17 @@
 package okayyildirim.com.callcalenderorganizermvc.Activity;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
+import okayyildirim.com.callcalenderorganizermvc.AppSettings.AppSettings;
 import okayyildirim.com.callcalenderorganizermvc.DB.DB;
 import okayyildirim.com.callcalenderorganizermvc.Fragments.UpdateDateFragment;
 import okayyildirim.com.callcalenderorganizermvc.Model.ListItem;
@@ -23,15 +27,17 @@ public class ListDetail extends AppCompatActivity {
     String endDate;
     String beginDate;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration c = new Configuration();
+        c.locale = new Locale(AppSettings.getInstance(getApplicationContext()).getValue("LANGUAGE"));
+        getResources().updateConfiguration(c, null);
+
         setContentView(R.layout.activity_list_detail);
 
-
-
-        begin_date_btn = findViewById(R.id.begin_date_btn);
+        begin_date_btn = (Button) findViewById(R.id.begin_date_btn);
         begin_date_btn.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
@@ -40,7 +46,7 @@ public class ListDetail extends AppCompatActivity {
             }
         });
 
-        end_date_btn = findViewById(R.id.end_date_btn);
+        end_date_btn = (Button) findViewById(R.id.end_date_btn);
         end_date_btn.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
@@ -49,7 +55,7 @@ public class ListDetail extends AppCompatActivity {
             }
         });
 
-        save_btn = findViewById(R.id.save_btn);
+        save_btn = (Button) findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
@@ -57,6 +63,9 @@ public class ListDetail extends AppCompatActivity {
                 save();
             }
         });
+
+        Switch begin_date_switch = (Switch) findViewById(R.id.begin_date_switch);
+        Switch end_date_switch = (Switch) findViewById(R.id.end_date_switch);
 
         Bundle extras = getIntent().getExtras();
 
@@ -67,6 +76,10 @@ public class ListDetail extends AppCompatActivity {
 
             endDate = item.getEndDate();
             beginDate = item.getDate();
+
+            begin_date_switch.setChecked((item.getNotifyBeginDate()==1)? true: false);
+            end_date_switch.setChecked((item.getNotifyEndDate()==1)? true: false);
+
 
             setBeginDate(beginDate);
             setEndDate(endDate);
@@ -104,7 +117,10 @@ public class ListDetail extends AppCompatActivity {
     }
 
     private void save() {
-        DB.getInstance(getApplicationContext()).updateListItemDateRange(callListID,beginDate,endDate);
+        Switch begin_date_switch = (Switch) findViewById(R.id.begin_date_switch);
+        Switch end_date_switch = (Switch) findViewById(R.id.end_date_switch);
+
+        DB.getInstance(getApplicationContext()).updateListItem(callListID,beginDate,endDate,(begin_date_switch.isChecked()? 1: 0),(end_date_switch.isChecked()? 1: 0));
         finish();
 
     }

@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <application
+        android:name=".Application.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,12 +22,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CreateNewCallList"
+            android:configChanges="locale"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.DisplayCallList"
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ListDetail"
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Settings"
+            android:configChanges="locale"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CallList"
@@ -46,8 +58,9 @@
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".Alarm.AlarmReceiver"></receiver>
 
-        <activity android:name=".Activity.ListDetail"></activity>
+        <activity android:name=".Activity.Language"></activity>
     </application>
 
 </manifest>

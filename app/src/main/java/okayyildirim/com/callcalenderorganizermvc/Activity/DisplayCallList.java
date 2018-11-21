@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CallLog;
@@ -15,17 +16,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
 import okayyildirim.com.callcalenderorganizermvc.Adapter.CallListPhoneBookAdapter;
+import okayyildirim.com.callcalenderorganizermvc.AppSettings.AppSettings;
 import okayyildirim.com.callcalenderorganizermvc.DB.DB;
 import okayyildirim.com.callcalenderorganizermvc.Fragments.UpdateDateFragment;
 import okayyildirim.com.callcalenderorganizermvc.Model.CallObject;
@@ -46,6 +47,11 @@ public class DisplayCallList extends AppCompatActivity implements Observer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration c = new Configuration();
+        c.locale = new Locale(AppSettings.getInstance(getApplicationContext()).getValue("LANGUAGE"));
+        getResources().updateConfiguration(c, null);
+
         setContentView(R.layout.activity_display_call_list);
 
         personList = new ArrayList<ListPhoneBookItem>();
@@ -64,7 +70,7 @@ public class DisplayCallList extends AppCompatActivity implements Observer
 
         callListPhoneBookAdapter = new CallListPhoneBookAdapter(getApplicationContext(),personList);
 
-        startCall = findViewById(R.id.startCall);
+        startCall = (ImageButton) findViewById(R.id.startCall);
         startCall.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
@@ -81,7 +87,7 @@ public class DisplayCallList extends AppCompatActivity implements Observer
             }
         });
 
-        CallLists = findViewById(R.id.CallLists);
+        CallLists = (ListView) findViewById(R.id.CallLists);
         CallLists.setAdapter(callListPhoneBookAdapter);
 
 

@@ -14,8 +14,7 @@ import okayyildirim.com.callcalenderorganizermvc.Model.CallObject;
 public class CallReceiver extends PhonecallReceiver
 {
 
-    public CallReceiver()
-    {
+    public CallReceiver() {
 
     }
 
