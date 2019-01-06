@@ -58,7 +58,9 @@
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".Alarm.AlarmReceiver"></receiver>
+        <receiver android:name=".Alarm.AlarmReceiver">
+
+        </receiver>
 
         <activity android:name=".Activity.Language"></activity>
     </application>

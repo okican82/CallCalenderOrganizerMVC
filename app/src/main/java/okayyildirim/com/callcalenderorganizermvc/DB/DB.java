@@ -63,6 +63,9 @@ public class DB extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
     }
 
+    /**
+     * @return
+     */
     public ArrayList<ListItem> getCallLists()
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -88,6 +91,10 @@ public class DB extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * @param listId
+     * @return
+     */
     public String getListNameByID(int listId)
     {
         String listName = "";
@@ -109,6 +116,10 @@ public class DB extends SQLiteOpenHelper {
         return listName;
     }
 
+    /**
+     * @param listId
+     * @return
+     */
     public ListItem getListItemByID(int listId)
     {
         ListItem item;
@@ -202,6 +213,9 @@ public class DB extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * @param listID
+     */
     public void removeListFromDB(int listID)
     {
         SQLiteDatabase db = this.getReadableDatabase();

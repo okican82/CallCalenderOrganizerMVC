@@ -28,4 +28,5 @@
     <string name="begin_date_title_and">Bu gün araman gereken kişiler var</string>
     <string name="end_date_title">Bu gün araman gereken kişiler için son günün.</string>
     <string name="end_date_title_and"> ve bazı kişileri aramak için son günün.</string>
+    <string name="copy">Kopyala</string>
 </resources>

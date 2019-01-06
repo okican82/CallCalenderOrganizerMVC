@@ -28,4 +28,5 @@
     <string name="begin_date_title_and">Sie haben heute Leute, die Sie anrufen können</string>
     <string name="end_date_title">Letzter Tag für Menschen, die heute anrufen müssen.</string>
     <string name="end_date_title_and"> und der letzte Tag, um nach einigen Kontakten zu suchen.</string>
+    <string name="copy">Kopie</string>
 </resources>

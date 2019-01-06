@@ -28,4 +28,5 @@
     <string name="begin_date_title_and">You have list to call to day</string>
     <string name="end_date_title">To day is last day to call some list.</string>
     <string name="end_date_title_and"> and last day to call some list.</string>
+    <string name="copy">Copy</string>
 </resources>

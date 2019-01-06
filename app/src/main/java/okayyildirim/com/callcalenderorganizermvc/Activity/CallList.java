@@ -21,11 +21,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import okayyildirim.com.callcalenderorganizermvc.Adapter.CallListAdapter;
 import okayyildirim.com.callcalenderorganizermvc.AppSettings.AppSettings;
 import okayyildirim.com.callcalenderorganizermvc.DB.DB;
+import okayyildirim.com.callcalenderorganizermvc.Fragments.ListPopUp;
+import okayyildirim.com.callcalenderorganizermvc.Fragments.UpdateDateFragment;
 import okayyildirim.com.callcalenderorganizermvc.Model.ListItem;
 import okayyildirim.com.callcalenderorganizermvc.R;
 import okayyildirim.com.callcalenderorganizermvc.Utiliy.Util;
@@ -45,6 +48,7 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
     private Button noListHere;
     private CallListAdapter callListAdapter;
     private ArrayList<ListItem> ListItems;
+    private boolean longPressed;
 
     public static final int RequestPermissionCode = 1;
 
@@ -52,11 +56,14 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         Configuration c = new Configuration();
         c.locale = new Locale(AppSettings.getInstance(getApplicationContext()).getValue("LANGUAGE"));
         getResources().updateConfiguration(c, null);
 
         setContentView(R.layout.activity_call_list);
+
+        longPressed = false;
 
         CallLists = (ListView) findViewById(R.id.CallLists);
 
@@ -82,11 +89,9 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
 
         CallLists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-            public boolean onItemLongClick(AdapterView<?> arg0, View v,
-                                           int index, long arg3) {
-
-                Toast.makeText(getApplicationContext(),"lonf", Toast.LENGTH_LONG).show();
-                return false;
+            public boolean onItemLongClick(AdapterView<?> arg0, View v, int index, long arg3) {
+                openListPopUp(index);
+                return true;
             }
         });
 
@@ -98,11 +103,41 @@ public class CallList extends AppCompatActivity implements View.OnClickListener 
 
     }
 
+    private void openListPopUp(final int index) {
+        ListPopUp cc = new ListPopUp(this);
+        cc.setDialogResult(new ListPopUp.OnMyDialogResult(){
+            public void finish(int result){
+                if(result == 0)
+                {
+                    deleteListItem(index);
+                }
+                else if(result == 1)
+                {
+                    copyListItem(index);
+                }
+            }
+        });
+        cc.show();
+
+    }
+
     @Override
     protected void onResume()
     {
         super.onResume();
         resfreshLayoutView();
+    }
+
+    private void deleteListItem(int index)
+    {
+        ListItem item = ListItems.get(index);
+        DB.getInstance(getApplicationContext()).removeListFromDB(item.getID());
+        resfreshLayoutView();
+    }
+
+    private void copyListItem(int index)
+    {
+        // kopyalama işlemi biraz sakat
     }
 
     private void addNewCallList()
