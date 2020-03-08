@@ -195,6 +195,7 @@ public class DB extends SQLiteOpenHelper {
         db.update("LISTS", values, "ID=" + listID, null);
 
         db.close();
+        db.close();
     }
 
     public void addToCallList(String contactPhoneNumber, int callListID)
